@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('musics', function (Blueprint $table) {
-            $table->id();
-            $table->string('music');
-            $table->text('description')->nullable();
-            // $table->foreignId('tag_id')->constrained();
-            $table->timestamps();
+        Schema::table('musics', function (Blueprint $table) {
+            $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
         });
     }
 
@@ -29,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('musics');
+        Schema::table('musics', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn(['user_id']);
+        });
     }
 };

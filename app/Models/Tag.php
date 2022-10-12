@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
-}
 
-// アプリケーション側でcreateなどできない値を記述する
-protected $guarded = [
-    'id',
-    'created_at',
-    'updated_at',
-];
+    // アプリケーション側でcreateなどできない値を記述する
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+}
