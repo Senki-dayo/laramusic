@@ -35,4 +35,10 @@ class Song extends Model
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+
 }

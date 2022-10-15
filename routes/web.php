@@ -5,6 +5,8 @@ use App\Http\Controllers\SongController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\CategorizedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('song/{song}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
     Route::get('/song/mypage', [SongController::class, 'mydata'])->name('song.mypage');
     Route::resource('song', SongController::class);
+    Route::resource('tag',TagController::class);
+    Route::resource('categorized',CategorizedController::class);
+
+
+
+    
 });
 
 Route::get('/', function () {
