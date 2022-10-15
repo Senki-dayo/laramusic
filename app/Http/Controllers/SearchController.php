@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Song;
 use App\Models\User;
+use App\Models\Tag;
+use Auth;
 
 class SearchController extends Controller
 {
@@ -33,7 +35,12 @@ class SearchController extends Controller
      */
     public function create()
     {
-    return view('search.input');
+        $tags = Tag::query()
+            ->where('user_id',Auth::id())
+            ->orderby('updated_at','desc')
+            ->get();
+
+    return view('search.input',compact('tags'));
     }
 
     /**
