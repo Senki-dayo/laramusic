@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Song;
+use Auth;
+use App\Models\User;
+use App\Models\Tag;
 
 class CategorizedController extends Controller
 {
@@ -23,7 +27,15 @@ class CategorizedController extends Controller
      */
     public function create()
     {
-        return view('categorized.create');
+        $songs = Song::query()
+            ->where('user_id', Auth::id())
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $tags = Tag::query()
+            ->where('user_id', Auth::id())
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        return view('categorized.create', compact('songs', 'tags'));
     }
 
     /**
