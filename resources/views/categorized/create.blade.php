@@ -11,10 +11,40 @@
           <div class="p-6 bg-white border-b border-gray-200">
             @include('common.errors')
 
-              
-              <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
-                登録！
-              </button>
+        
+        {{-- ここにコメント --}}
+            <form action="{{ route('categorized.store') }}" method = "POST">
+            @csrf
+                <table border="1">
+                    <tr>
+                        <td>
+                            <div>
+                                <p>曲を選択</p>
+                                <select name="example">
+                                    @foreach ($songs as $song)
+                                    <option>{{$song->song}}</option>
+                                    @endforeach
+                                    
+                                    
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <p>タグを選択</p>
+                                <select name="example">
+                                @foreach ($tags as $tag)
+                                    <option>{{$tag->tag_title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                    登録！
+                </button>
             </form>
           </div>
         </div>
