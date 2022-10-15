@@ -42,7 +42,6 @@ class SongController extends Controller
     // バリデーション
     $validator = Validator::make($request->all(), [
         'song' => 'required | max:191',
-        'description' => 'required',
     ]);
     // バリデーション:エラー
     if ($validator->fails()) {
