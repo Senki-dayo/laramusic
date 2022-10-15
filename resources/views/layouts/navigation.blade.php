@@ -22,12 +22,6 @@
               {{ __('Index') }}
             </x-nav-link>
           </div>
-          <!-- 🔽 作成ページへのリンクを追加 -->
-          <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link :href="route('song.create')" :active="request()->routeIs('song.create')">
-              {{ __('Create') }}
-            </x-nav-link>
-          </div>
           <!-- 🔽 マイページへのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('song.mypage')" :active="request()->routeIs('song.mypage')">
@@ -37,14 +31,35 @@
           <!-- 🔽 タイムラインへのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('song.timeline')" :active="request()->routeIs('song.timeline')">
-              {{ __('Timeline') }}
+              {{ __('タイムライン') }}
             </x-nav-link>
           </div>
 
           <!-- 🔽 検索画面へのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('search.input')" :active="request()->routeIs('search.input')">
-              {{ __('Search') }}
+              {{ __('曲検索') }}
+            </x-nav-link>
+          </div>
+
+          <!-- 🔽 タグ登録へのリンクを追加 -->
+          <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('tag.create')" :active="request()->routeIs('tag.create')">
+              {{ __('タグ登録') }}
+            </x-nav-link>
+          </div>
+          
+          <!-- 🔽 作成ページへのリンクを追加 -->
+          <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('song.create')" :active="request()->routeIs('song.create')">
+              {{ __('曲登録') }}
+            </x-nav-link>
+          </div>
+
+          <!-- 🔽 曲振り分けへのリンクを追加 -->
+          <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('categorized.create')" :active="request()->routeIs('categorized.create')">
+              {{ __('曲振り分け') }}
             </x-nav-link>
           </div>
 
@@ -104,12 +119,7 @@
           {{ __('Index') }}
         </x-responsive-nav-link>
       </div>
-      <!-- 🔽 作成ページへのリンクを追加 -->
-      <div class="pt-2 pb-3 space-y-1">
-        <x-responsive-nav-link :href="route('song.create')" :active="request()->routeIs('song.create')">
-          {{ __('Create') }}
-        </x-responsive-nav-link>
-      </div>
+      
       <!-- 🔽 マイページへのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('song.mypage')" :active="request()->routeIs('song.mypage')">
@@ -119,14 +129,35 @@
       <!-- 🔽 タイムラインへのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('song.timeline')" :active="request()->routeIs('song.timeline')">
-          {{ __('Timeline') }}
+          {{ __('タイムライン') }}
         </x-responsive-nav-link>
       </div>
 
       <!-- 🔽 検索画面へのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('search.input')" :active="request()->routeIs('search.input')">
-          {{ __('Search') }}
+          {{ __('曲検索') }}
+        </x-responsive-nav-link>
+      </div>
+
+      <!-- 🔽 タグ登録へのリンクを追加 -->
+      <div class="pt-2 pb-3 space-y-1">
+        <x-responsive-nav-link :href="route('tag.create')" :active="request()->routeIs('tag.create')">
+          {{ __('タグ登録') }}
+        </x-responsive-nav-link>
+      </div>
+      
+      <!-- 🔽 作成ページへのリンクを追加 -->
+      <div class="pt-2 pb-3 space-y-1">
+        <x-responsive-nav-link :href="route('song.create')" :active="request()->routeIs('song.create')">
+          {{ __('曲登録') }}
+        </x-responsive-nav-link>
+      </div>
+
+      <!-- 🔽 曲振り分けへのリンクを追加 -->
+      <div class="pt-2 pb-3 space-y-1">
+        <x-responsive-nav-link :href="route('categorized.create')" :active="request()->routeIs('categorized.create')">
+          {{ __('曲振り分け') }}
         </x-responsive-nav-link>
       </div>
 

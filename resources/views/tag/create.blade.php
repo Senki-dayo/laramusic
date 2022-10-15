@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Create New Song') }}
+        {{ __('Create New tag') }}
       </h2>
     </x-slot>
 
@@ -10,13 +10,13 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
           <div class="p-6 bg-white border-b border-gray-200">
             @include('common.errors')
-            <form class="mb-6" action="{{ route('song.store') }}" method="POST">
+            <form class="mb-6" action="{{ route('tag.store') }}" method="POST">
               @csrf
               <div class="flex flex-col mb-4">
-                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="song">Song_title</label>
-                <input class="border py-2 px-3 text-grey-darkest" type="text" name="song" id="song">
+                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="tag">tag</label>
+                <input class="border py-2 px-3 text-grey-darkest" type="text" name="tag" id="tag">
               </div>
-      
+              
               <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                 Create
               </button>
