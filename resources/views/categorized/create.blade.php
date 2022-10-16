@@ -20,7 +20,7 @@
                         <td>
                             <div>
                                 <p>曲を選択</p>
-                                <select name="example">
+                                <select name="song">
                                     @foreach ($songs as $song)
                                     <option>{{$song->song}}</option>
                                     @endforeach
@@ -32,7 +32,7 @@
                         <td>
                             <div>
                                 <p>タグを選択</p>
-                                <select name="example">
+                                <select name="tag_title">
                                 @foreach ($tags as $tag)
                                     <option>{{$tag->tag_title}}</option>
                                     @endforeach

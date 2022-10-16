@@ -14,7 +14,7 @@
             @csrf
             <div>
               <p>タグを選択</p>
-              <select name="example">
+              <select name="tag_title">
               @foreach ($tags as $tag)
                   <option>{{$tag->tag_title}}</option>
                   @endforeach
