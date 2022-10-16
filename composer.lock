@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "37021a6ef91d01515857afab5259f209",
+    "content-hash": "340e9266ff37eb09359990a68a7c52b1",
     "packages": [
         {
             "name": "aerni/laravel-spotify",
@@ -979,56 +979,6 @@
                 }
             ],
             "time": "2022-08-28T14:45:39+00:00"
-        },
-        {
-            "name": "jwilsson/spotify-web-api-php",
-            "version": "5.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jwilsson/spotify-web-api-php.git",
-                "reference": "a52c07f59882a441e4d50960cbddf866024a77df"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jwilsson/spotify-web-api-php/zipball/a52c07f59882a441e4d50960cbddf866024a77df",
-                "reference": "a52c07f59882a441e4d50960cbddf866024a77df",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": "^7.3 || ^8.0"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "^2.5",
-                "phpunit/phpunit": "^9.4",
-                "squizlabs/php_codesniffer": "^3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SpotifyWebAPI\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jonathan Wilsson",
-                    "email": "jonathan.wilsson@gmail.com"
-                }
-            ],
-            "description": "A PHP wrapper for Spotify's Web API.",
-            "homepage": "https://github.com/jwilsson/spotify-web-api-php",
-            "keywords": [
-                "spotify"
-            ],
-            "support": {
-                "issues": "https://github.com/jwilsson/spotify-web-api-php/issues",
-                "source": "https://github.com/jwilsson/spotify-web-api-php/tree/5.3.0"
-            },
-            "time": "2022-09-03T11:25:29+00:00"
         },
         {
             "name": "laravel/framework",
