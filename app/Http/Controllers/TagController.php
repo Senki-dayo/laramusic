@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Tag;
+use Auth;
+use App\Models\User;
 
 class TagController extends Controller
 {
@@ -36,7 +38,24 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+    // バリデーション
+    $validator = Validator::make($request->all(), [
+        'tag_title' => 'required | max:191',
+    ]);
+    // バリデーション:エラー
+    if ($validator->fails()) {
+        return redirect()
+        ->route('tag.create')
+        ->withInput()
+        ->withErrors($validator);
+    }
+    // create()は最初から用意されている関数
+    // 戻り値は挿入されたレコードの情報
+    $data = $request->merge(['user_id' => Auth::user()->id])->all();
+    $result = Tag::create($data);
+    // ルーティング「tag.index」にリクエスト送信（一覧ページに移動）
+    return redirect()->route('song.index');
     }
 
     /**

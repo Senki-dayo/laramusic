@@ -15,16 +15,38 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index(Request $request)
     {
-    $keyword = trim($request->keyword);
-    $users  = User::where('name', 'like', "%{$keyword}%")->pluck('id')->all();
-    $songs = Song::query()
-        ->where('song', 'like', "%{$keyword}%")
-        ->orWhere('description', 'like', "%{$keyword}%")
-        ->orWhereIn('user_id', $users)
+    $songs = Tag::query()
+        ->with(['songs' => function ($q) {
+            $q->pluck('song');
+        }])
+        ->where('tag_title',$request->tag_title)
+        ->get()
+        ->toArray();
+
+        
+
+    
+    $tag_title = $request->tag_title;
+    
+    /**$tags = Tag::query()
+        ->where('tag_title',$tag_title)
         ->get();
-    return view('song.index', compact('songs'));
+    
+    $song_tags = Song_Tag::query()
+        ->where('tag_id',$tags->id)
+        ->get();
+
+    $songs = Song::query()
+        ->where('user_id', Auth::id())
+        ->get();
+        */
+
+    return view('search.index', compact('songs','tag_title'));
+    
     }
 
 
