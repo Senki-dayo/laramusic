@@ -1,7 +1,8 @@
 <?php
+    // dd($albums);
+    // dd($recommendations);
     $name = Auth::user()->name;
 
-    // SpotifyAPIを利用して楽曲情報を取得する。
     class Song
     {
         public $title = "";
@@ -57,17 +58,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($songs as $song)
+                  @foreach ($recommendations->tracks as $track)
                   <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
                         <div class="flex">
                             <div>
-                                <p class="text-left text-grey-dark">{{$song->artist}}</p>
-                                <h3 class="text-left font-bold text-lg text-grey-dark">{{$song->title}}</h3>
+                                {{-- <p class="text-left text-grey-dark">{{$track->artist}}</p> --}}
+                                <h3 class="text-left font-bold text-lg text-grey-dark">{{$track->name}}</h3>
                             </div>
-                            <div class="ml-8 items-center">
-                                <p class="text-grey-dark">{{$song->description}}</p>
-                            </div>
+                            {{-- <div class="ml-8 items-center">
+                                <p class="text-grey-dark">{{$album->description}}</p>
+                            </div> --}}
                         </div>
                     </td>
                   </tr>
@@ -78,12 +79,4 @@
           </div>
         </div>
       </div>
-
-    <script>
-
-
-
-
-    </script>
-
 </x-app-layout>
