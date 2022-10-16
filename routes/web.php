@@ -7,7 +7,6 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CategorizedController;
-// use Spotify;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,9 +43,22 @@ Route::get('/dashboard', function () {
     //     ->setTargetValence(1.00)
     //     ->setSpeechiness(0.3, 0.9)
     //     ->setLiveness(0.3, 1.0);
+
+    //ID Sample
+    //track 1CAIveeC0CUY0KbENoNU3X
+
+
+    //おすすめの曲
     $seed = SpotifySeed::addTracks('55Ww4Pa1iIQMhh0MLMetjo', '1CAIveeC0CUY0KbENoNU3X');
     $songs = Spotify::recommendations($seed)->get();
-    return view('dashboard',compact('songs'));
+
+
+
+    $image = Spotify::playlistCoverImage('37i9dQZF1DZ06evNZXIDEU')->get();
+    // $image = Spotify::trackCoverImage('1CAIveeC0CUY0KbENoNU3X')->get();
+    $track = Spotify::track('1CAIveeC0CUY0KbENoNU3X')->get();
+
+    return view('dashboard',compact('songs','image','track'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
