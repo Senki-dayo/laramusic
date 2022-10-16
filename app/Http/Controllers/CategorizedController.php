@@ -45,14 +45,10 @@ class CategorizedController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-   
     {
-        
-        // create()は最初から用意されている関数
-        // 戻り値は挿入されたレコードの情報
-        $data = $request->merge(['user_id' => Auth::user()->id])->all();
-        $result = Song::create($data);
-        // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
+        $song = Song::where('song', $request->input('song'))->first();
+        $tag = Tag::where('tag_title', $request->input('tag_title'))->first();
+        $song->tags()->attach($tag->id);
         return redirect()->route('song.index');
     }
 

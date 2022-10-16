@@ -19,33 +19,31 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
-    $songs = Tag::query()
-        ->with(['songs' => function ($q) {
-            $q->pluck('song');
-        }])
-        ->where('tag_title',$request->tag_title)
-        ->get()
-        ->toArray();
+        $songs = Song::with('tags:id')
+            ->get();
+        
+        ddd($songs);
+        $songs = $tags->songs;
+        ddd($songs);
+            
 
         
+        $tag_title = $request->tag_title;
+        
+        /**$tags = Tag::query()
+            ->where('tag_title',$tag_title)
+            ->get();
+        
+        $song_tags = Song_Tag::query()
+            ->where('tag_id',$tags->id)
+            ->get();
 
-    
-    $tag_title = $request->tag_title;
-    
-    /**$tags = Tag::query()
-        ->where('tag_title',$tag_title)
-        ->get();
-    
-    $song_tags = Song_Tag::query()
-        ->where('tag_id',$tags->id)
-        ->get();
+        $songs = Song::query()
+            ->where('user_id', Auth::id())
+            ->get();
+            */
 
-    $songs = Song::query()
-        ->where('user_id', Auth::id())
-        ->get();
-        */
-
-    return view('search.index', compact('songs','tag_title'));
+        return view('search.index', compact('songs','tag_title'));
     
     }
 
