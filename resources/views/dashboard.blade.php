@@ -1,31 +1,5 @@
 <?php
     $name = Auth::user()->name;
-
-    // SpotifyAPIを利用して楽曲情報を取得する。
-    class Song
-    {
-        public $title = "";
-        public $artist = "";
-        public $description = "";
-    }
-
-    $songs = array();
-
-    $songs[0] = new Song();
-    $songs[0]->title = "Title1";
-    $songs[0]->artist = "Taro";
-    $songs[0]->description = "It's fun!!";
-
-    $songs[1] = new Song();
-    $songs[1]->title = "Title2";
-    $songs[1]->artist = "Jiro";
-    $songs[1]->description = "It's sad!!";
-
-    $songs[2] = new Song();
-    $songs[2]->title = "Title3";
-    $songs[2]->artist = "Saburo";
-    $songs[2]->description = "It's good!!";
-
 ?>
 
 <x-app-layout>
@@ -45,7 +19,6 @@
         </div>
     </div>
 
-
     <div class="py-3">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -57,16 +30,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($songs as $song)
+                  @foreach ($songs['items'] as $song)
                   <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
                         <div class="flex">
                             <div>
-                                <p class="text-left text-grey-dark">{{$song->artist}}</p>
-                                <h3 class="text-left font-bold text-lg text-grey-dark">{{$song->title}}</h3>
+                                {{-- <p class="text-left text-grey-dark">{{$song->artist}}</p> --}}
+                                <h3 class="text-left font-bold text-lg text-grey-dark">{{$song['name']}}</h3>
                             </div>
                             <div class="ml-8 items-center">
-                                <p class="text-grey-dark">{{$song->description}}</p>
+                                {{-- <p class="text-grey-dark">{{$song->description}}</p> --}}
                             </div>
                         </div>
                     </td>
@@ -78,12 +51,4 @@
           </div>
         </div>
       </div>
-
-    <script>
-
-
-
-
-    </script>
-
 </x-app-layout>

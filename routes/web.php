@@ -7,6 +7,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CategorizedController;
+// use Spotify;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('tag',TagController::class);
     Route::resource('categorized',CategorizedController::class);
 
-
-
-    
 });
 
 Route::get('/', function () {
@@ -42,7 +40,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // $songs = Spotify::artistAlbums('37i9dQZF1DZ06evNZXIDEU')->get();
+    // $songs = Spotify::artist('0TnOYISbd1XYRBk9myaseg')->get();
+    $songs = Spotify::albumTracks('0GDxYVgLWDfGYgPUbuZonO')->get();
+    return view('dashboard',compact('songs'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
