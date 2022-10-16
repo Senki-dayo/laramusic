@@ -1,5 +1,7 @@
 <?php
     $name = Auth::user()->name;
+
+    // dd($songs);
 ?>
 
 <x-app-layout>
@@ -30,16 +32,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($songs['items'] as $song)
+                  @foreach ($songs['tracks'] as $song)
                   <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
                         <div class="flex">
                             <div>
-                                {{-- <p class="text-left text-grey-dark">{{$song->artist}}</p> --}}
                                 <h3 class="text-left font-bold text-lg text-grey-dark">{{$song['name']}}</h3>
-                            </div>
-                            <div class="ml-8 items-center">
-                                {{-- <p class="text-grey-dark">{{$song->description}}</p> --}}
+                                <audio controls src={{$song['preview_url']}}></audio>
                             </div>
                         </div>
                     </td>

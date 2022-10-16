@@ -38,11 +38,14 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/dashboard', function () {
-    // $songs = Spotify::artistAlbums('37i9dQZF1DZ06evNZXIDEU')->get();
-    // $songs = Spotify::artist('0TnOYISbd1XYRBk9myaseg')->get();
-    $songs = Spotify::albumTracks('0GDxYVgLWDfGYgPUbuZonO')->get();
+    // $songs = Spotify::albumTracks('0GDxYVgLWDfGYgPUbuZonO')->get();
+    // $seed = SpotifySeed::setGenres(['gospel', 'pop', 'funk'])
+    //     ->setTargetValence(1.00)
+    //     ->setSpeechiness(0.3, 0.9)
+    //     ->setLiveness(0.3, 1.0);
+    $seed = SpotifySeed::addTracks('55Ww4Pa1iIQMhh0MLMetjo', '1CAIveeC0CUY0KbENoNU3X');
+    $songs = Spotify::recommendations($seed)->get();
     return view('dashboard',compact('songs'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
