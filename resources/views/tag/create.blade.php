@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Create New tag') }}
+        {{ __('新しいタグを登録しよう') }}
       </h2>
     </x-slot>
 
@@ -13,12 +13,12 @@
             <form class="mb-6" action="{{ route('tag.store') }}" method="POST">
               @csrf
               <div class="flex flex-col mb-4">
-                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="tag_title">tag</label>
+                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="tag_title">タグ</label>
                 <input class="border py-2 px-3 text-grey-darkest" type="text" name="tag_title" id="tag_title">
               </div>
               
               <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
-                Create
+                登録
               </button>
             </form>
           </div>

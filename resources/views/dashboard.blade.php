@@ -11,7 +11,7 @@
 <x-app-layo_ut>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('おすすめ曲一覧') }}
         </h2>
     </x-slot>
 
