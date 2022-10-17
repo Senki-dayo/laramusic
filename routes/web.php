@@ -46,7 +46,7 @@ Route::get('/dashboard', function () {
 
     //ID Sample
     //track 1CAIveeC0CUY0KbENoNU3X
-
+    //track 5m1i6hq7dmRlp3c1utE48L (track_imageあり)
 
     //おすすめの曲
     $seed = SpotifySeed::addTracks('55Ww4Pa1iIQMhh0MLMetjo', '1CAIveeC0CUY0KbENoNU3X');

@@ -25,6 +25,13 @@
         </div>
     </div>
 
+    <p>曲名データ：{{$songs['tracks'][0]['name']}}</p>
+    <p>歌手データ：{{$songs['tracks'][0]['artists'][0]['name']}}</p>
+        {{--歌手は複数いるかもなの忘れないように  --}}
+    <p>画像データ：{{$songs['tracks'][0]['album']['images'][2]['url']}}</p>
+    <p>音声データ：{{$songs['tracks'][0]['preview_url']}}</p>
+    <p>トラックID:{{$songs['tracks'][0]['id']}}</p>
+
     <div class="py-3">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -36,12 +43,6 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <p>曲名データ：{{$songs['tracks'][0]['name']}}</p>
-                    <p>歌手データ：{{$songs['tracks'][0]['artists'][0]['name']}}</p>
-                     {{--歌手は複数いるかもなの忘れないように  --}}
-                    <p>画像データ：{{$songs['tracks'][0]['album']['images'][2]['url']}}</p>
-                    <p>音声データ：{{$songs['tracks'][0]['preview_url']}}</p>
-                    <p>トラックID:{{$songs['tracks'][0]['id']}}</p>
                     <?php
 
                         $track = Spotify::track('5m1i6hq7dmRlp3c1utE48L')->get();
