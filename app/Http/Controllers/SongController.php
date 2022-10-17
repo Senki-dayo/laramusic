@@ -17,7 +17,12 @@ class SongController extends Controller
      */
     public function index()
     {
-        $songs = Song::getAllOrderByUpdated_at();
+        
+
+        $songs = Song::query()
+            ->where('user_id',Auth::id())
+            ->orderby('updated_at','desc')
+            ->get();
         return view('song.index',compact('songs'));
     }
 
