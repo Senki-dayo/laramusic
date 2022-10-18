@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Validation\Rule;
 use App\Models\Tag;
 use Auth;
 use App\Models\User;
@@ -38,11 +39,20 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-    
+
     // バリデーション
-    $validator = Validator::make($request->all(), [
+    $rules1 = [
         'tag_title' => 'required | max:191',
-    ]);
+    ];
+
+    $rules2 = [
+        'tag_title' =>
+            Rule::unique('tags')->where(function ($query) {
+                return $query->where('user_id', Auth::id());
+            }),
+    ];
+
+    $validator = Validator::make($request->all(), $rules1);
     // バリデーション:エラー
     if ($validator->fails()) {
         return redirect()
@@ -50,6 +60,16 @@ class TagController extends Controller
         ->withInput()
         ->withErrors($validator);
     }
+
+    $validator = Validator::make($request->all(), $rules2);
+    // バリデーション:エラー
+    if ($validator->fails()) {
+        return redirect()
+        ->route('tag.create')
+        ->withInput()
+        ->withErrors($validator);
+    }
+
     // create()は最初から用意されている関数
     // 戻り値は挿入されたレコードの情報
     $data = $request->merge(['user_id' => Auth::user()->id])->all();
