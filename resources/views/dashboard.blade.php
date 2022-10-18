@@ -53,12 +53,25 @@
                   <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
                         <div class="flex">
-                            <div>
+                            <form class="mb-6" action="{{ route('song.store') }}" method="POST">
+                                @csrf
+
+                                {{-- データ表示用 --}}
                                 <img class="w-16 h-16" src={{$song['album']['images'][2]['url']}}>
                                 <h3 class="text-left font-bold text-lg text-grey-dark">{{$song['artists'][0]['name']}}</h3>
-                                <h3 class="text-left font-bold text-lg text-grey-dark">{{$song['name']}}</h3>
+                                <h3 class="text-left font-bold text-lg text-grey-dark" name="song" id="song">{{$song['name']}}</h3>
                                 <audio controls src={{$song['preview_url']}}></audio>
-                            </div>
+
+                                {{-- データ転送用 --}}
+                                <input class="hidden" type="text" name="song" value={{$song['name']}}>
+                                <input class="hidden" type="text" name="artist" value={{$song['artists'][0]['name']}}>
+                                <input class="hidden" type="text" name="image_url" value={{$song['album']['images'][2]['url']}}>
+                                <input class="hidden" type="text" name="music_url" value={{$song['preview_url']}}>
+
+                                <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                    登録
+                                </button>
+                                </form>
                         </div>
                     </td>
                   </tr>

@@ -17,7 +17,7 @@ class SongController extends Controller
      */
     public function index()
     {
-        
+
 
         $songs = Song::query()
             ->where('user_id',Auth::id())
