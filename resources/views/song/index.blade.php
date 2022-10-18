@@ -52,17 +52,32 @@
                                     </div>
                                 </div>
 
-                                <div>
-                                    <?php
-                                        $tags = $song->tags;
-                                    ?>
-                                    付いているタグ：
-                                    @foreach($tags as $tag)
-                                    <p>{{$tag->tag_title}}</p>
-                                    @endforeach
 
+                                <?php
+                                    $tags = $song->tags;
+                                ?>
+                                <style>
+                                    .tag {
+                                        display: inline-block;
+                                        margin: .5em .5em 0 0;
+                                        padding: .4em;
+                                        line-height: 1;
+                                        text-decoration: none;
+                                        color: black;
+                                        background-color: #fff;
+                                        border: 1px solid black;
+                                        border-left: 5px solid black;
+                                    }
+                                </style>
 
+                                <div class="flex">
+                                @foreach($tags as $tag)
+                                <p class="tag mr-2">{{$tag->tag_title}}</p>
+                                @endforeach
                                 </div>
+
+
+
                             </form>
                         </td>
                       </tr>
