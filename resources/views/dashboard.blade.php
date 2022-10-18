@@ -2,13 +2,10 @@
     $name = Auth::user()->name;
 
     // dd($songs);
-    // dd($songs['tracks'][0]['album']['images'][2]['url']);
-    // dd($songs['tracks'][0]);
-    // dd($image[0]['url']);
-    // dd($track);
 ?>
 
-<x-app-layo_ut>
+<x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('おすすめ曲一覧') }}
@@ -25,54 +22,72 @@
         </div>
     </div>
 
+    {{-- データ読み込み チートシート --}}
+    <div class="hidden">
     <p>曲名データ：{{$songs['tracks'][0]['name']}}</p>
     <p>歌手データ：{{$songs['tracks'][0]['artists'][0]['name']}}</p>
-        {{--歌手は複数いるかもなの忘れないように  --}}
     <p>画像データ：{{$songs['tracks'][0]['album']['images'][2]['url']}}</p>
     <p>音声データ：{{$songs['tracks'][0]['preview_url']}}</p>
     <p>トラックID:{{$songs['tracks'][0]['id']}}</p>
+    </div>
 
+
+    {{-- ここの表示部を、共通部分として後で抜き出して使い回す --}}
     <div class="py-3">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
               <table class="text-left w-full border-collapse">
+
                 <thead>
                   <tr>
                     <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">注目の楽曲</th>
                   </tr>
                 </thead>
-                <tbody>
-                    <?php
 
-                        $track = Spotify::track('5m1i6hq7dmRlp3c1utE48L')->get();
-                        // $track = Spotify::track($songs['tracks'][0]['id'])->get();
-                        // dd($track);
-                    ?>
+                <tbody>
                   @foreach ($songs['tracks'] as $song)
                   <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
-                        <div class="flex">
-                            <form class="mb-6" action="{{ route('song.store') }}" method="POST">
-                                @csrf
+                        <form action="{{ route('song.store') }}" method="POST">
+                            @csrf
 
-                                {{-- データ表示用 --}}
+                            {{-- データ転送用 --}}
+                            <input class="hidden" type="text" name="song" value={{$song['name']}}>
+                            <input class="hidden" type="text" name="artist" value={{$song['artists'][0]['name']}}>
+                            <input class="hidden" type="text" name="image_url" value={{$song['album']['images'][2]['url']}}>
+                            <input class="hidden" type="text" name="music_url" value={{$song['preview_url']}}>
+                            {{-- SpotifyのtrackIDだけをDBに保存したほうが良いかも？ --}}
+                            {{-- SpotifyAPI(無料版)の接続制限も気になるのでとりあえず保留で。 --}}
+
+                            {{-- データ表示用 --}}
+                            <style>
+                                .container {
+                                    justify-content : space-between;
+                                }
+                            </style>
+
+                            <div class="flex container">
+                                <div class="w-1/6">
                                 <img class="w-16 h-16" src={{$song['album']['images'][2]['url']}}>
-                                <h3 class="text-left font-bold text-lg text-grey-dark">{{$song['artists'][0]['name']}}</h3>
+                                </div>
+
+                                <div class="w-1/3">
                                 <h3 class="text-left font-bold text-lg text-grey-dark" name="song" id="song">{{$song['name']}}</h3>
+                                <h3 class="text-left font-bold text-lg text-grey-dark">{{$song['artists'][0]['name']}}</h3>
+                                </div>
+
+                                <div class="w-5/12">
                                 <audio controls src={{$song['preview_url']}}></audio>
+                                </div>
 
-                                {{-- データ転送用 --}}
-                                <input class="hidden" type="text" name="song" value={{$song['name']}}>
-                                <input class="hidden" type="text" name="artist" value={{$song['artists'][0]['name']}}>
-                                <input class="hidden" type="text" name="image_url" value={{$song['album']['images'][2]['url']}}>
-                                <input class="hidden" type="text" name="music_url" value={{$song['preview_url']}}>
-
-                                <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                <div class="w-1/12">
+                                <button type="submit" class="py-3 font-medium tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                                     登録
                                 </button>
-                                </form>
-                        </div>
+                                </div>
+                            </div>
+                        </form>
                     </td>
                   </tr>
                   @endforeach
@@ -82,4 +97,5 @@
           </div>
         </div>
       </div>
+
 </x-app-layout>
