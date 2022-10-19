@@ -30,10 +30,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/song/mypage', [SongController::class, 'mydata'])->name('song.mypage');
     Route::resource('song', SongController::class);
     Route::resource('tag',TagController::class);
+    Route::get('categorized/{song}/{tag}', [CategorizedController::class, 'destroy'])->name('untags');
     Route::resource('categorized',CategorizedController::class);
 
-    //作成中
-    Route::post('song/untags', [CategorizedController::class, 'destroy'])->name('untags');
 
 });
 

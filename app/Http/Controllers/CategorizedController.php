@@ -92,8 +92,10 @@ class CategorizedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($song_id,$tag_id)
     {
-        //
+        $song = Song::find($song_id);
+        $song->tags()->detach($tag_id);
+        return redirect()->route('song.index');
     }
 }

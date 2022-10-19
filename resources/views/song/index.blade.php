@@ -21,6 +21,7 @@
                     @foreach ($songs as $song)
                     <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
+
                         <form action="{{ route('song.destroy',$song->id) }}" method="POST">
                             @method('delete')
                             @csrf
@@ -51,36 +52,37 @@
                                 </button>
                                 </div>
                             </div>
+                        </form>
 
-                            <style>
-                                .tag {
-                                    display: inline-block;
-                                    margin: .5em .5em 0 0;
-                                    padding: .4em;
-                                    line-height: 1;
-                                    text-decoration: none;
-                                    color: black;
-                                    background-color: #fff;
-                                    border: 1px solid black;
-                                    border-left: 5px solid black;
-                                }
-                            </style>
+                        <style>
+                            .tag {
+                                display: inline-block;
+                                margin: .5em .5em 0 0;
+                                padding: .4em;
+                                line-height: 1;
+                                text-decoration: none;
+                                color: black;
+                                background-color: #fff;
+                                border: 1px solid black;
+                                border-left: 5px solid black;
+                            }
+                        </style>
 
-                            <div class="flex">
+                        <div class="flex">
                             @foreach($song->tags as $tag)
-                            <form action="{{ route('untags',$song) }}" method="POST">
+                            <form action="{{ route('untags', ['song' => $song->id ,'tag' => $tag->id]) }}" method="POST">
+                                @method('get')
                                 @csrf
                                 <div class="tag">
                                     {{$tag->tag_title}}
-                                    {{-- <button type="submit" class="rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                    <button type="submit" class="rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                                         解除
-                                    </button> --}}
+                                    </button>
                                 </div>
                             </form>
                             @endforeach
-                            </div>
+                        </div>
 
-                        </form>
                     </td>
                     </tr>
                     @endforeach

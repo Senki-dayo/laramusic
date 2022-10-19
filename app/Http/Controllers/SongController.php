@@ -21,9 +21,6 @@ class SongController extends Controller
             ->where('user_id',Auth::id())
             ->orderby('updated_at','desc')
             ->get();
-
-
-
         return view('song.index',compact('songs'));
     }
 
