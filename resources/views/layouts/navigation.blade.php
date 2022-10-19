@@ -45,10 +45,10 @@
           <!-- 🔽 タグ登録へのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('tag.create')" :active="request()->routeIs('tag.create')">
-              {{ __('タグ登録') }}
+              {{ __('タグ管理') }}
             </x-nav-link>
           </div>
-          
+
           <!-- 🔽 作成ページへのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('song.create')" :active="request()->routeIs('song.create')">
@@ -119,7 +119,7 @@
           {{ __('あなたの曲一覧') }}
         </x-responsive-nav-link>
       </div>
-      
+
       <!-- 🔽 マイページへのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('song.mypage')" :active="request()->routeIs('song.mypage')">
@@ -146,7 +146,7 @@
           {{ __('タグ登録') }}
         </x-responsive-nav-link>
       </div>
-      
+
       <!-- 🔽 作成ページへのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('song.create')" :active="request()->routeIs('song.create')">
