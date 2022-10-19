@@ -15,7 +15,6 @@ class Tag extends Model
         'updated_at',
     ];
 
-
     public function songs()
     {
         return $this->belongsToMany(Song::class)->withTimestamps();

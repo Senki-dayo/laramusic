@@ -52,11 +52,6 @@
                                 </div>
                             </div>
 
-
-                            <?php
-                                $tags = $song->tags;
-                                // dd($song);
-                            ?>
                             <style>
                                 .tag {
                                     display: inline-block;
@@ -72,14 +67,14 @@
                             </style>
 
                             <div class="flex">
-                            @foreach($tags as $tag)
+                            @foreach($song->tags as $tag)
                             <form action="{{ route('untags',$song) }}" method="POST">
                                 @csrf
                                 <div class="tag">
                                     {{$tag->tag_title}}
-                                    <button type="submit" class="rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                    {{-- <button type="submit" class="rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                                         解除
-                                    </button>
+                                    </button> --}}
                                 </div>
                             </form>
                             @endforeach
