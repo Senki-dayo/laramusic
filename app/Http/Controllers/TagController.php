@@ -42,7 +42,7 @@ class TagController extends Controller
 
     // バリデーション
     $rules1 = [
-        'tag_title' => 'required | max:191',
+        'tag_title' => 'required | max:20',
     ];
 
     $rules2 = [

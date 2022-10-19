@@ -13,7 +13,7 @@
 
                     <thead>
                       <tr>
-                        <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">注目の楽曲</th>
+                        <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">あなたの楽曲</th>
                       </tr>
                     </thead>
 
@@ -46,7 +46,7 @@
                                     </div>
 
                                     <div class="w-1/12">
-                                    <button type="submit" class="py-3 font-medium tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                    <button type="submit" class="rounded-md mt-2 px-2 py-2 font-medium tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                                         削除
                                     </button>
                                     </div>
@@ -55,6 +55,7 @@
 
                                 <?php
                                     $tags = $song->tags;
+                                    // dd($song);
                                 ?>
                                 <style>
                                     .tag {
@@ -72,11 +73,17 @@
 
                                 <div class="flex">
                                 @foreach($tags as $tag)
-                                <p class="tag mr-2">{{$tag->tag_title}}</p>
+                                <form action="{{ route('untags',$song) }}" method="POST">
+                                    @csrf
+                                    <div class="tag">
+                                        {{$tag->tag_title}}
+                                        <button type="submit" class="rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                            解除
+                                        </button>
+                                    </div>
+                                </form>
                                 @endforeach
                                 </div>
-
-
 
                             </form>
                         </td>
