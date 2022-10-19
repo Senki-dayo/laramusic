@@ -21,6 +21,7 @@
                     @foreach ($songs as $song)
                     <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
+
                         <form action="{{ route('song.destroy',$song->id) }}" method="POST">
                             @method('delete')
                             @csrf
@@ -51,29 +52,26 @@
                                 </button>
                                 </div>
                             </div>
+                        </form>
 
+                        <style>
+                            .tag {
+                                display: inline-block;
+                                margin: .5em .5em 0 0;
+                                padding: .4em;
+                                line-height: 1;
+                                text-decoration: none;
+                                color: black;
+                                background-color: #fff;
+                                border: 1px solid black;
+                                border-left: 5px solid black;
+                            }
+                        </style>
 
-                            <?php
-                                $tags = $song->tags;
-                                // dd($song);
-                            ?>
-                            <style>
-                                .tag {
-                                    display: inline-block;
-                                    margin: .5em .5em 0 0;
-                                    padding: .4em;
-                                    line-height: 1;
-                                    text-decoration: none;
-                                    color: black;
-                                    background-color: #fff;
-                                    border: 1px solid black;
-                                    border-left: 5px solid black;
-                                }
-                            </style>
-
-                            <div class="flex">
-                            @foreach($tags as $tag)
-                            <form action="{{ route('untags',$song) }}" method="POST">
+                        <div class="flex">
+                            @foreach($song->tags as $tag)
+                            <form action="{{ route('untags', ['song' => $song->id ,'tag' => $tag->id]) }}" method="POST">
+                                @method('get')
                                 @csrf
                                 <div class="tag">
                                     {{$tag->tag_title}}
@@ -83,9 +81,8 @@
                                 </div>
                             </form>
                             @endforeach
-                            </div>
+                        </div>
 
-                        </form>
                     </td>
                     </tr>
                     @endforeach
