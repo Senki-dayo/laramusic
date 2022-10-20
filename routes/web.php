@@ -22,6 +22,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/song/search/input', [SearchController::class, 'create'])->name('search.input');
     Route::get('/song/search/result', [SearchController::class, 'index'])->name('search.result');
     Route::get('/song/timeline', [SongController::class, 'timeline'])->name('song.timeline');
+
+    Route::get('user/search/input', [FollowController::class, 'search'])->name('follow-search.input');
+    Route::get('user/search/result', [FollowController::class, 'index'])->name('follow-search.result');
+
     Route::get('user/{user}', [FollowController::class, 'show'])->name('follow.show');
     Route::get('user/{user}/edit', [FollowController::class, 'edit'])->name('follow.edit');
     Route::put('user/{user}/update', [FollowController::class, 'update'])->name('follow.update');

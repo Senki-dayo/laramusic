@@ -15,9 +15,12 @@ class FollowController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+      $keyword = trim($request->keyword);
+      $user_id  = User::where('name', 'like', "%{$keyword}%")->pluck('id')->all();
+      $users = User::find($user_id);
+      return view('user.index', compact('users'));
     }
 
     /**
@@ -56,7 +59,6 @@ class FollowController extends Controller
     $followers = $user->followers;
     // ターゲットユーザのフォローしている人一覧
     $followings  = $user->followings;
-
     return view('user.show', compact('user', 'followers', 'followings'));
     }
 
@@ -110,5 +112,10 @@ class FollowController extends Controller
     {
     Auth::user()->followings()->detach($user->id);
     return redirect()->back();
+    }
+
+    public function search()
+    {
+        return view('user.search');
     }
 }
