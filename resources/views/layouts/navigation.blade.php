@@ -24,7 +24,7 @@
           </div>
           <!-- 🔽 マイページへのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link :href="route('song.mypage')" :active="request()->routeIs('song.mypage')">
+            <x-nav-link :href="route('follow.show',Auth::id())" :active="request()->routeIs('follow.show')">
               {{ __('Mypage') }}
             </x-nav-link>
           </div>

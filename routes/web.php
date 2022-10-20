@@ -23,6 +23,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/song/search/result', [SearchController::class, 'index'])->name('search.result');
     Route::get('/song/timeline', [SongController::class, 'timeline'])->name('song.timeline');
     Route::get('user/{user}', [FollowController::class, 'show'])->name('follow.show');
+    Route::get('user/{user}/edit', [FollowController::class, 'edit'])->name('follow.edit');
+    Route::put('user/{user}/update', [FollowController::class, 'update'])->name('follow.update');
     Route::post('user/{user}/follow', [FollowController::class, 'store'])->name('follow');
     Route::post('user/{user}/unfollow', [FollowController::class, 'destroy'])->name('unfollow');
     Route::post('song/{song}/favorites', [FavoriteController::class, 'store'])->name('favorites');
