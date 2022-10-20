@@ -145,6 +145,6 @@ class SongController extends Controller
         ->orWhereIn('user_id', $followings)
         ->orderBy('updated_at', 'desc')
         ->get();
-    return view('song.index', compact('songs'));
+    return view('song.timeline', compact('songs'));
     }
 }
