@@ -19,13 +19,7 @@
           <!-- 🔽 一覧ページへのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('song.index')" :active="request()->routeIs('song.index')">
-              {{ __('あなたの曲一覧') }}
-            </x-nav-link>
-          </div>
-          <!-- 🔽 マイページへのリンクを追加 -->
-          <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link :href="route('follow.show',Auth::id())" :active="request()->routeIs('follow.show')">
-              {{ __('Mypage') }}
+              {{ __('登録曲') }}
             </x-nav-link>
           </div>
           <!-- 🔽 タイムラインへのリンクを追加 -->
@@ -34,7 +28,6 @@
               {{ __('タイムライン') }}
             </x-nav-link>
           </div>
-
           <!-- 🔽 検索画面へのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('search.input')" :active="request()->routeIs('search.input')">
@@ -60,6 +53,19 @@
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('categorized.create')" :active="request()->routeIs('categorized.create')">
               {{ __('曲振り分け') }}
+            </x-nav-link>
+          </div>
+
+          <!-- 🔽 ユーザ検索へのリンクを追加 -->
+          <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('follow-search.input')" :active="request()->routeIs('follow-search.input')">
+              {{ __('ユーザ検索') }}
+            </x-nav-link>
+          </div>
+          <!-- 🔽 マイページへのリンクを追加 -->
+          <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('follow.show',Auth::id())" :active="request()->routeIs('follow.show')">
+              {{ __('UserPage') }}
             </x-nav-link>
           </div>
 
@@ -116,14 +122,7 @@
       <!-- 🔽 一覧ページへのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('song.index')" :active="request()->routeIs('song.index')">
-          {{ __('あなたの曲一覧') }}
-        </x-responsive-nav-link>
-      </div>
-
-      <!-- 🔽 マイページへのリンクを追加 -->
-      <div class="pt-2 pb-3 space-y-1">
-        <x-responsive-nav-link :href="route('follow.show',Auth::id())" :active="request()->routeIs('follow.show')">
-          {{ __('Mypage') }}
+          {{ __('登録曲') }}
         </x-responsive-nav-link>
       </div>
       <!-- 🔽 タイムラインへのリンクを追加 -->
@@ -158,6 +157,20 @@
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('categorized.create')" :active="request()->routeIs('categorized.create')">
           {{ __('曲振り分け') }}
+        </x-responsive-nav-link>
+      </div>
+
+      <!-- 🔽 ユーザ検索へのリンクを追加 -->
+      <div class="pt-2 pb-3 space-y-1">
+        <x-responsive-nav-link :href="route('follow-search.input')" :active="request()->routeIs('follow-search.input')">
+          {{ __('ユーザ検索') }}
+        </x-responsive-nav-link>
+      </div>
+
+      <!-- 🔽 マイページへのリンクを追加 -->
+      <div class="pt-2 pb-3 space-y-1">
+        <x-responsive-nav-link :href="route('follow.show',Auth::id())" :active="request()->routeIs('follow.show')">
+          {{ __('Userpage') }}
         </x-responsive-nav-link>
       </div>
 
