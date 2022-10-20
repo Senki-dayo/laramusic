@@ -111,7 +111,6 @@ class SongController extends Controller
       return redirect()->route('song.index');
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
@@ -122,17 +121,6 @@ class SongController extends Controller
     {
     $result = Song::find($id)->delete();
     return redirect()->route('song.index');
-    }
-
-    public function mydata()
-    {
-        // Userモデルに定義したリレーションを使用してデータを取得する．
-        $songs = User::query()
-        ->find(Auth::user()->id)
-        ->userSongs()
-        ->orderBy('created_at','desc')
-        ->get();
-        return view('song.index', compact('songs'));
     }
 
     public function timeline()

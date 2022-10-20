@@ -122,7 +122,7 @@
 
       <!-- 🔽 マイページへのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
-        <x-responsive-nav-link :href="route('song.mypage')" :active="request()->routeIs('song.mypage')">
+        <x-responsive-nav-link :href="route('follow.show',Auth::id())" :active="request()->routeIs('follow.show')">
           {{ __('Mypage') }}
         </x-responsive-nav-link>
       </div>

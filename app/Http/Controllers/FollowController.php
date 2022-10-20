@@ -83,21 +83,6 @@ class FollowController extends Controller
     public function update(Request $request, $id)
     {
 
-    // 画像フォームでリクエストした画像を取得
-    $img = $request->file('image');
-    // storage > public > images配下に画像が保存される
-    if($img==null){
-        $path = "default_icon.png";
-    } else {
-        $path = $img->store('images','public');
-    }
-    // DBを更新
-    \DB::table('users')
-    ->where('id', Auth::id())
-    ->update([
-        'img_path' => $path
-    ]);
-
     //バリデーション
     $validator = Validator::make($request->all(), [
         'name' => 'required | max:191',
