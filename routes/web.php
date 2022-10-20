@@ -29,7 +29,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('user/{user}/unfollow', [FollowController::class, 'destroy'])->name('unfollow');
     Route::post('song/{song}/favorites', [FavoriteController::class, 'store'])->name('favorites');
     Route::post('song/{song}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
-    Route::get('/song/mypage', [SongController::class, 'mydata'])->name('song.mypage');
     Route::resource('song', SongController::class);
     Route::resource('tag',TagController::class);
     Route::get('categorized/{song}/{tag}', [CategorizedController::class, 'destroy'])->name('untags');
