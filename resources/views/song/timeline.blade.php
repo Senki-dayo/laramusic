@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('曲一覧') }}
+        {{ __('タイムライン') }}
       </h2>
     </x-slot>
 
@@ -33,7 +33,7 @@
                             <input class="hidden" type="text" name="image_url" value={{$song->image_url}}>
                             <input class="hidden" type="text" name="music_url" value={{$song->music_url}}>
                             {{-- SpotifyのtrackIDだけをDBに保存したほうが良いかも？ --}}
-                            {{-- SpotifyAPI(無料版)の接続制限も気になるのでとりあえず保留で。 --}}
+                            {{-- SpotifyAPI(無料版)の接続制限も気になるのでとりあえずこれで。 --}}
 
                             {{-- データ表示用 --}}
                             <style>
@@ -58,7 +58,7 @@
 
                                 @if($song->user->id !== Auth::id())
                                 <div class="w-1/12">
-                                <button type="submit" class="rounded-md mt-2 px-2 py-2 font-medium tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                <button type="submit" class="rounded-md mt-2 px-2 py-2 font-medium tracking-widest text-white bg-red-500 shadow-lg focus:outline-none hover:bg-red-600 hover:shadow-none">
                                     登録
                                 </button>
                                 </div>
