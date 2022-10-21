@@ -52,12 +52,18 @@
                                 <select class="hidden" name="song">
                                     <option>{{$song->song}}</option>
                                 </select>
-                                <select name="tag_title">
-                                @foreach ($tag_units[$index] as $tag)
-                                    <option>{{$tag->tag_title}}</option>
-                                    @endforeach
-                                </select>
-                                <button type="submit" class="ml-2 rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+
+                                <div class="selectdiv">
+                                    <label>
+                                        <select name="tag_title">
+                                            {{-- <option selected> Select Tag </option> --}}
+                                            @foreach ($tag_units[$index] as $tag)
+                                            <option>{{$tag->tag_title}}</option>
+                                            @endforeach
+                                        </select>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn ml-2 mt-2 rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-green-500 shadow-lg focus:outline-none hover:bg-green-700 hover:shadow-none">
                                     追加
                                 </button>
                             </form>
@@ -71,8 +77,8 @@
                                 @csrf
                                 <div class="tag">
                                     {{$tag->tag_title}}
-                                    <button type="submit" class="rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
-                                        解除
+                                    <button type="submit" class="rounded-full px-1 text-xs font-light tracking-widest text-white bg-red-500 shadow-lg focus:outline-none hover:bg-red-700 hover:shadow-none">
+                                        X
                                     </button>
                                 </div>
                             </form>
@@ -95,6 +101,7 @@
     .container {
         justify-content : space-between;
     }
+
     .tag {
         display: inline-block;
         margin: .5em .5em 0 0;
@@ -105,5 +112,56 @@
         background-color: #fff;
         border: 1px solid black;
         border-left: 5px solid black;
+    }
+
+    .btn {
+        height: 25px;
+    }
+
+    .selectdiv {
+    position: relative;
+    float: left;
+    min-width: 150px;
+    }
+
+    select::-ms-expand {
+    display: none;
+    }
+
+    .selectdiv:after {
+    content: '<>';
+    font: 16px "Consolas", monospace;
+    color: #333;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 5px;
+    top: 6px;
+    padding: 0 0 2px;
+    border-bottom: 1px solid #999;
+    position: absolute;
+    pointer-events: none;
+    }
+
+    .selectdiv select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: 30px;
+    float: right;
+    margin: 5px 0px;
+    padding: 0px 24px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #333;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    -ms-word-break: normal;
+    word-break: normal;
     }
 </style>

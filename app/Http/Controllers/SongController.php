@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Models\Tag;
 use Auth;
 
-
 class SongController extends Controller
 {
     /**
@@ -159,7 +158,6 @@ class SongController extends Controller
     {
     // フォローしているユーザを取得する
     $followings = User::find(Auth::id())->followings->pluck('id')->all();
-    // 自分とフォローしている人が投稿したツイートを取得する
     $songs = Song::query()
         ->where('user_id', Auth::id())
         ->orWhereIn('user_id', $followings)

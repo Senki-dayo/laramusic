@@ -58,7 +58,6 @@
 
                         </div>
 
-
                       </td>
                     </tr>
                     @endforeach
