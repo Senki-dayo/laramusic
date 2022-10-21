@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('曲一覧') }}
+        {{ __('あなたの楽曲を一覧表示') }}
       </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
 
                 <thead>
                     <tr>
-                    <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">あなたの楽曲</th>
+                    <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">ここに検索機能もってくる</th>
                     </tr>
                 </thead>
 
@@ -67,6 +67,8 @@
                                 border-left: 5px solid black;
                             }
                         </style>
+
+                        <div class="mt-2">ここにタグ追加機能持ってくる</div>
 
                         <div class="flex">
                             @foreach($song->tags as $tag)

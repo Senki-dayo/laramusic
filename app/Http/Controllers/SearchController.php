@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Song;
 use App\Models\User;
 use App\Models\Tag;
@@ -19,32 +20,23 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
-        $songs = Song::with('tags:id')
-            ->get();
-        
-        ddd($songs);
-        $songs = $tags->songs;
-        ddd($songs);
-            
-
-        
         $tag_title = $request->tag_title;
-        
-        /**$tags = Tag::query()
+        $tag_id = Tag::query()
+            ->where('user_id',Auth::id())
             ->where('tag_title',$tag_title)
-            ->get();
-        
-        $song_tags = Song_Tag::query()
-            ->where('tag_id',$tags->id)
-            ->get();
+            ->value('id');
+
+        $song_id = DB::table('song_tag')
+            ->where('tag_id',$tag_id)
+            ->pluck('song_id');
 
         $songs = Song::query()
-            ->where('user_id', Auth::id())
+            ->where('user_id',Auth::id())
+            ->whereIn('id',$song_id)
             ->get();
-            */
 
         return view('search.index', compact('songs','tag_title'));
-    
+
     }
 
 
