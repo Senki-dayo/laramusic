@@ -13,7 +13,28 @@
 
                 <thead>
                     <tr>
-                    <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">ここに検索機能もってくる</th>
+                    <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">
+                        {{-- 曲の絞り込み機能 --}}
+                        <form class="flex" action="{{ route('song.search') }}" method = "POST">
+                            @csrf
+                            <div class="selectdiv">
+                                <label>
+                                    <select name="tag_title">
+                                        <option>指定しない</option>
+                                        @foreach ($tags as $tag)
+                                        <option>{{$tag->tag_title}}</option>
+                                        @endforeach
+                                    </select>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn ml-2 mt-2 rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-green-500 shadow-lg focus:outline-none hover:bg-green-700 hover:shadow-none">
+                                この条件で絞り込む
+                            </button>
+                        </form>
+                        @if ($searched != null)
+                        <p>絞り込み条件：{{$searched}}</p>
+                        @endif
+                    </th>
                     </tr>
                 </thead>
 
@@ -56,7 +77,7 @@
                                 <div class="selectdiv">
                                     <label>
                                         <select name="tag_title">
-                                            {{-- <option selected> Select Tag </option> --}}
+                                            <option selected>Select Tag</option>
                                             @foreach ($tag_units[$index] as $tag)
                                             <option>{{$tag->tag_title}}</option>
                                             @endforeach

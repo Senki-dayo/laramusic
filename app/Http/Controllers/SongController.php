@@ -19,13 +19,21 @@ class SongController extends Controller
      */
     public function index()
     {
+        $searched = null;
+
         // 自分の登録曲を全て取得
         $songs = Song::query()
             ->where('user_id',Auth::id())
             ->orderby('updated_at','desc')
             ->get();
 
+        // 自分の登録タグを全て取得
+        $tags = Tag::query()
+            ->where('user_id',Auth::id())
+            ->orderby('updated_at','desc')
+            ->get();
 
+        // 各曲で選択できるタグを取得
         $tag_units = [];
         foreach($songs as $song){
             $tags_id = $song->tags
@@ -36,23 +44,7 @@ class SongController extends Controller
                 ->get();
             array_push($tag_units, $tag_unit);
         }
-
-        // $tag_title = "面白い";
-        // $tag_id = Tag::query()
-        //     ->where('user_id',Auth::id())
-        //     ->where('tag_title',$tag_title)
-        //     ->value('id');
-
-        // $song_id = DB::table('song_tag')
-        //     ->where('tag_id',$tag_id)
-        //     ->pluck('song_id');
-
-        // $songs = Song::query()
-        //     ->where('user_id',Auth::id())
-        //     ->whereIn('id',$song_id)
-        //     ->get();
-
-        return view('song.index',compact('songs','tag_units'));
+        return view('song.index',compact('songs','tags','tag_units','searched'));
     }
 
     /**
@@ -164,5 +156,48 @@ class SongController extends Controller
         ->orderBy('updated_at', 'desc')
         ->get();
     return view('song.timeline', compact('songs'));
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->input('tag_title') == '指定しない'){
+            return redirect()->route('song.index');
+        }
+
+        $searched = $request->input('tag_title');
+
+        // 自分の登録曲を全て取得
+        $tag_id = Tag::query()
+            ->where('user_id',Auth::id())
+            ->where('tag_title',$searched)
+            ->value('id');
+
+        $song_id = DB::table('song_tag')
+            ->where('tag_id',$tag_id)
+            ->pluck('song_id');
+
+        $songs = Song::query()
+            ->where('user_id',Auth::id())
+            ->whereIn('id',$song_id)
+            ->get();
+
+        // 自分の登録タグを全て取得
+        $tags = Tag::query()
+            ->where('user_id',Auth::id())
+            ->orderby('updated_at','desc')
+            ->get();
+
+        // 各曲で選択できるタグを取得
+        $tag_units = [];
+        foreach($songs as $song){
+            $tags_id = $song->tags
+                ->pluck('id');
+            $tag_unit = Tag::query()
+                ->where('user_id',Auth::id())
+                ->whereNotIn('id',$tags_id)
+                ->get();
+            array_push($tag_units, $tag_unit);
+        }
+        return view('song.index',compact('songs','tags','tag_units','searched'));
     }
 }

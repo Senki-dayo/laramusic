@@ -47,16 +47,8 @@ class CategorizedController extends Controller
      */
     public function store(Request $request)
     {
-        // バリデーション
-        $validator = Validator::make($request->all(), [
-            'tag_title' => 'required',
-        ]);
-        // バリデーション:エラー
-        if ($validator->fails()) {
-            return redirect()
-            ->route('song.index')
-            ->withInput()
-            ->withErrors($validator);
+        if ($request->input('tag_title') == 'Select Tag'){
+            return redirect()->route('song.index');
         }
 
         $song = Song::query()

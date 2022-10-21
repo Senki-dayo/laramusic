@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth'], function () {
     // タグから曲を検索する機能
     Route::get('/song/search/input', [SearchController::class, 'create'])->name('search.input');
     Route::get('/song/search/result', [SearchController::class, 'index'])->name('search.result');
+    //タグから曲を検索する機能(真)
+    Route::post('/song/search', [SongController::class, 'search'])->name('song.search');
     // タイムライン機能
     Route::get('/song/timeline', [SongController::class, 'timeline'])->name('song.timeline');
     // ユーザを検索する機能
