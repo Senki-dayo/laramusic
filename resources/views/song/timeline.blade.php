@@ -21,9 +21,6 @@
                     @foreach ($songs as $song)
                     <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
-                        <?php
-                        // dd($song);
-                        ?>
                         <p>{{$song->created_at}}</p>
                         <p class="mb-4"><b>{{$song->user->name}}</b>さんが新しい楽曲を登録しました。</p>
 

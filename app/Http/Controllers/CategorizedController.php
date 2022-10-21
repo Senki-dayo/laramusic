@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\Models\Song;
-use Auth;
 use App\Models\User;
 use App\Models\Tag;
+use Auth;
 
 class CategorizedController extends Controller
 {
@@ -46,6 +47,18 @@ class CategorizedController extends Controller
      */
     public function store(Request $request)
     {
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'tag_title' => 'required',
+        ]);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+            ->route('song.index')
+            ->withInput()
+            ->withErrors($validator);
+        }
+
         $song = Song::query()
             ->where('user_id',Auth::id())
             ->where('song', $request->input('song'))
