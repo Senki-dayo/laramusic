@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="w-1/3">
                                 <h3 class="text-left font-bold text-lg text-grey-dark" name="song" id="song">{{$song->song}}</h3>
-                                <h3 class="text-left font-bold text-lg text-grey-dark">{{$song->artist}}</h3>
+                                <h3 class="text-left font-normal text-lg text-grey-dark">{{$song->artist}}</h3>
                                 </div>
                                 <div class="w-5/12">
                                 <audio controls src={{$song->music_url}}></audio>
