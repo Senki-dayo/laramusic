@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use App\Models\Song;
-use Auth;
 use App\Models\User;
+use App\Models\Tag;
+use Auth;
+
 
 class SongController extends Controller
 {
@@ -17,10 +20,28 @@ class SongController extends Controller
      */
     public function index()
     {
+        // 自分の登録曲を全て取得
         $songs = Song::query()
             ->where('user_id',Auth::id())
             ->orderby('updated_at','desc')
             ->get();
+
+
+        // $tag_title = "面白い";
+        // $tag_id = Tag::query()
+        //     ->where('user_id',Auth::id())
+        //     ->where('tag_title',$tag_title)
+        //     ->value('id');
+
+        // $song_id = DB::table('song_tag')
+        //     ->where('tag_id',$tag_id)
+        //     ->pluck('song_id');
+
+        // $songs = Song::query()
+        //     ->where('user_id',Auth::id())
+        //     ->whereIn('id',$song_id)
+        //     ->get();
+
         return view('song.index',compact('songs'));
     }
 

@@ -17,14 +17,75 @@
               <tbody>
                 @foreach ($songs as $song)
                 <tr class="hover:bg-grey-lighter">
-                    <td class="py-4 px-6 border-b border-grey-light">
-                        <div class="flex">
-                            <?php dd($song->song) ?>
+                <td class="py-4 px-6 border-b border-grey-light">
+
+                    <form action="{{ route('song.destroy',$song->id) }}" method="POST">
+                        @method('delete')
+                        @csrf
+
+                        <style>
+                            .container {
+                                justify-content : space-between;
+                            }
+                        </style>
+
+                        <div class="flex container">
+                            <div class="w-1/6">
+                            <img class="w-16 h-16" src={{$song->image_url}}>
+                            </div>
+
+                            <div class="w-1/3">
+                            <h3 class="text-left font-bold text-lg text-grey-dark" name="song" id="song">{{$song->song}}</h3>
+                            <h3 class="text-left font-bold text-lg text-grey-dark">{{$song->artist}}</h3>
+                            </div>
+
+                            <div class="w-5/12">
+                            <audio controls src={{$song->music_url}}></audio>
+                            </div>
+
+                            <div class="w-1/12">
+                            <button type="submit" class="rounded-md mt-2 px-2 py-2 font-medium tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                削除
+                            </button>
+                            </div>
                         </div>
-                    </td>
+                    </form>
+
+                    <style>
+                        .tag {
+                            display: inline-block;
+                            margin: .5em .5em 0 0;
+                            padding: .4em;
+                            line-height: 1;
+                            text-decoration: none;
+                            color: black;
+                            background-color: #fff;
+                            border: 1px solid black;
+                            border-left: 5px solid black;
+                        }
+                    </style>
+
+                    <div class="mt-2">ここにタグ追加機能持ってくる</div>
+
+                    <div class="flex">
+                        @foreach($song->tags as $tag)
+                        <form action="{{ route('untags', ['song' => $song->id ,'tag' => $tag->id]) }}" method="POST">
+                            @method('get')
+                            @csrf
+                            <div class="tag">
+                                {{$tag->tag_title}}
+                                <button type="submit" class="rounded-md px-1 py-1 text-xs font-light tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                    解除
+                                </button>
+                            </div>
+                        </form>
+                        @endforeach
+                    </div>
+
+                </td>
                 </tr>
                 @endforeach
-              </tbody>
+            </tbody>
             </table>
           </div>
         </div>
