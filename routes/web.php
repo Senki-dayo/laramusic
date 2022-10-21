@@ -32,9 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('user/{user}/update', [FollowController::class, 'update'])->name('follow.update');
     Route::post('user/{user}/follow', [FollowController::class, 'store'])->name('follow');
     Route::post('user/{user}/unfollow', [FollowController::class, 'destroy'])->name('unfollow');
-    // お気に入り機能(後で消しそう)
-    Route::post('song/{song}/favorites', [FavoriteController::class, 'store'])->name('favorites');
-    Route::post('song/{song}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
     // 曲の機能
     Route::resource('song', SongController::class);
     // タグの機能

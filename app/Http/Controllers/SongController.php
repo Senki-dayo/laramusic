@@ -90,6 +90,7 @@ class SongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // 使っていない
     public function show($id)
     {
     $song = Song::find($id);
@@ -102,6 +103,7 @@ class SongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // 使っていない
     public function edit($id)
     {
     $song = Song::find($id);

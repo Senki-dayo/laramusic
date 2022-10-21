@@ -16,12 +16,14 @@
               {{ __('ダッシュボード') }}
             </x-nav-link>
           </div>
+
           <!-- 🔽 一覧ページへのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('song.index')" :active="request()->routeIs('song.index')">
               {{ __('登録曲') }}
             </x-nav-link>
           </div>
+
           <!-- 🔽 タイムラインへのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('song.timeline')" :active="request()->routeIs('song.timeline')">
@@ -49,6 +51,7 @@
               {{ __('ユーザ検索') }}
             </x-nav-link>
           </div>
+
           <!-- 🔽 マイページへのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('follow.show',Auth::id())" :active="request()->routeIs('follow.show')">
@@ -112,13 +115,13 @@
           {{ __('登録曲') }}
         </x-responsive-nav-link>
       </div>
+
       <!-- 🔽 タイムラインへのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('song.timeline')" :active="request()->routeIs('song.timeline')">
           {{ __('タイムライン') }}
         </x-responsive-nav-link>
       </div>
-
 
       <!-- 🔽 タグ登録へのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
