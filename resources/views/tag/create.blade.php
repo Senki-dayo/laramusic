@@ -55,7 +55,7 @@
                             <div class="flex container">
                                 <h3 class="w-1/3 mt-2 text-left font-bold text-lg text-grey-dark" name="tag_title">{{$tag->tag_title}}</h3>
                                 <h3 class="w-1/3 mt-2">登録楽曲数({{ $tag->songs()->count() }})</h3>
-                                <button type="submit" class="w-1/12 rounded-md px-2 py-2 font-medium tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                                <button type="submit" class="w-1/12 rounded-md px-2 py-2 font-medium tracking-widest text-white bg-gray-700 shadow-lg focus:outline-none hover:bg-gray-800 hover:shadow-none">
                                     削除
                                 </button>
                             </div>
