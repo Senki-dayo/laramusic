@@ -15,7 +15,7 @@
                     <tr>
                     <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">
                         {{-- 曲の絞り込み機能 --}}
-                        <form class="flex" action="{{ route('song.search') }}" method = "POST">
+                        <form class="flex" action="{{ route('song.search') }}" method = "GET">
                             @csrf
                             <div class="selectdiv">
                                 <label>
@@ -94,7 +94,7 @@
                         <div class="flex">
                             @foreach($song->tags as $tag)
                             <form action="{{ route('untags', ['song' => $song->id ,'tag' => $tag->id]) }}" method="POST">
-                                @method('get')
+                                @method('delete')
                                 @csrf
                                 <div class="tag">
                                     {{$tag->tag_title}}

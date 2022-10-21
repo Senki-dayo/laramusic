@@ -18,9 +18,15 @@ use App\Http\Controllers\CategorizedController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// get -> 情報を取得するとき
+// post -> 情報を登録するとき
+// put -> 情報の登録のうち、特に情報を更新するとき
+// delete -> 情報の登録のうち、特に情報を削除するとき
+
 Route::group(['middleware' => 'auth'], function () {
-    //タグから曲を検索する機能(真)
-    Route::post('/song/search', [SongController::class, 'search'])->name('song.search');
+    //タグから曲を検索する機能
+    Route::get('/song/search', [SongController::class, 'search'])->name('song.search');
     // タイムライン機能
     Route::get('/song/timeline', [SongController::class, 'timeline'])->name('song.timeline');
     // ユーザを検索する機能
@@ -37,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     // タグの機能
     Route::resource('tag',TagController::class);
     // 曲に対してタグを付け外しする機能
-    Route::get('categorized/{song}/{tag}', [CategorizedController::class, 'destroy'])->name('untags');
+    Route::delete('categorized/{song}/{tag}', [CategorizedController::class, 'destroy'])->name('untags');
     Route::resource('categorized',CategorizedController::class);
 });
 
