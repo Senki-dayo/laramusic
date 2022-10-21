@@ -11,7 +11,7 @@
           <div class="p-6 bg-white border-b border-gray-200">
             @include('common.errors')
 
-        
+
         {{-- ここにコメント --}}
             <form action="{{ route('categorized.store') }}" method = "POST">
             @csrf
@@ -24,8 +24,6 @@
                                     @foreach ($songs as $song)
                                     <option>{{$song->song}}</option>
                                     @endforeach
-                                    
-                                    
                                 </select>
                             </div>
                         </td>

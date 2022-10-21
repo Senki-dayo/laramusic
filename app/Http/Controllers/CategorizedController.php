@@ -46,8 +46,14 @@ class CategorizedController extends Controller
      */
     public function store(Request $request)
     {
-        $song = Song::where('song', $request->input('song'))->first();
-        $tag = Tag::where('tag_title', $request->input('tag_title'))->first();
+        $song = Song::query()
+            ->where('user_id',Auth::id())
+            ->where('song', $request->input('song'))
+            ->first();
+        $tag = Tag::query()
+            ->where('user_id',Auth::id())
+            ->where('tag_title', $request->input('tag_title'))
+            ->first();
         $song->tags()->attach($tag->id);
         return redirect()->route('song.index');
     }

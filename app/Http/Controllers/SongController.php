@@ -27,6 +27,17 @@ class SongController extends Controller
             ->get();
 
 
+        $tag_units = [];
+        foreach($songs as $song){
+            $tags_id = $song->tags
+                ->pluck('id');
+            $tag_unit = Tag::query()
+                ->where('user_id',Auth::id())
+                ->whereNotIn('id',$tags_id)
+                ->get();
+            array_push($tag_units, $tag_unit);
+        }
+
         // $tag_title = "面白い";
         // $tag_id = Tag::query()
         //     ->where('user_id',Auth::id())
@@ -42,7 +53,7 @@ class SongController extends Controller
         //     ->whereIn('id',$song_id)
         //     ->get();
 
-        return view('song.index',compact('songs'));
+        return view('song.index',compact('songs','tag_units'));
     }
 
     /**
