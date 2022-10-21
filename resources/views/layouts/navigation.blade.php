@@ -49,13 +49,6 @@
             </x-nav-link>
           </div>
 
-          <!-- 🔽 曲振り分けへのリンクを追加 -->
-          <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link :href="route('categorized.create')" :active="request()->routeIs('categorized.create')">
-              {{ __('曲振り分け') }}
-            </x-nav-link>
-          </div>
-
           <!-- 🔽 ユーザ検索へのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('follow-search.input')" :active="request()->routeIs('follow-search.input')">
@@ -150,13 +143,6 @@
       <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('song.create')" :active="request()->routeIs('song.create')">
           {{ __('曲登録') }}
-        </x-responsive-nav-link>
-      </div>
-
-      <!-- 🔽 曲振り分けへのリンクを追加 -->
-      <div class="pt-2 pb-3 space-y-1">
-        <x-responsive-nav-link :href="route('categorized.create')" :active="request()->routeIs('categorized.create')">
-          {{ __('曲振り分け') }}
         </x-responsive-nav-link>
       </div>
 

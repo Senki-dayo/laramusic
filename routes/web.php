@@ -19,26 +19,30 @@ use App\Http\Controllers\CategorizedController;
 |
 */
 Route::group(['middleware' => 'auth'], function () {
+    // タグから曲を検索する機能
     Route::get('/song/search/input', [SearchController::class, 'create'])->name('search.input');
     Route::get('/song/search/result', [SearchController::class, 'index'])->name('search.result');
+    // タイムライン機能
     Route::get('/song/timeline', [SongController::class, 'timeline'])->name('song.timeline');
-
+    // ユーザを検索する機能
     Route::get('user/search/input', [FollowController::class, 'search'])->name('follow-search.input');
     Route::get('user/search/result', [FollowController::class, 'index'])->name('follow-search.result');
-
+    // ユーザを表示、フォローする機能
     Route::get('user/{user}', [FollowController::class, 'show'])->name('follow.show');
     Route::get('user/{user}/edit', [FollowController::class, 'edit'])->name('follow.edit');
     Route::put('user/{user}/update', [FollowController::class, 'update'])->name('follow.update');
     Route::post('user/{user}/follow', [FollowController::class, 'store'])->name('follow');
     Route::post('user/{user}/unfollow', [FollowController::class, 'destroy'])->name('unfollow');
+    // お気に入り機能(後で消しそう)
     Route::post('song/{song}/favorites', [FavoriteController::class, 'store'])->name('favorites');
     Route::post('song/{song}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
+    // 曲の機能
     Route::resource('song', SongController::class);
+    // タグの機能
     Route::resource('tag',TagController::class);
+    // 曲に対してタグを付け外しする機能
     Route::get('categorized/{song}/{tag}', [CategorizedController::class, 'destroy'])->name('untags');
     Route::resource('categorized',CategorizedController::class);
-
-
 });
 
 Route::get('/', function () {
