@@ -23,52 +23,7 @@
                     <td class="py-4 px-6 border-b border-grey-light">
                         <p>{{$song->created_at}}</p>
                         <p class="mb-4"><b>{{$song->user->name}}</b>さんが新しい楽曲を登録しました。</p>
-
-                        <form action="{{ route('song.store') }}" method="POST">
-                            @csrf
-
-                            {{-- データ転送用 --}}
-                            <input class="hidden" type="text" name="song" value={{$song->song}}>
-                            <input class="hidden" type="text" name="artist" value={{$song->artist}}>
-                            <input class="hidden" type="text" name="image_url" value={{$song->image_url}}>
-                            <input class="hidden" type="text" name="music_url" value={{$song->music_url}}>
-                            {{-- SpotifyのtrackIDだけをDBに保存したほうが良いかも？ --}}
-                            {{-- SpotifyAPI(無料版)の接続制限も気になるのでとりあえずこれで。 --}}
-
-                            {{-- データ表示用 --}}
-                            <style>
-                                .container {
-                                    justify-content : space-between;
-                                }
-                            </style>
-
-                            <div class="flex container">
-                                <div class="w-1/6">
-                                <img class="w-16 h-16" src={{$song->image_url}}>
-                                </div>
-
-                                <div class="w-1/3">
-                                <h3 class="text-left font-bold text-lg text-grey-dark" name="song" id="song">{{$song->song}}</h3>
-                                <h3 class="text-left font-bold text-lg text-grey-dark">{{$song->artist}}</h3>
-                                </div>
-
-                                <div class="w-5/12">
-                                <audio controls src={{$song->music_url}}></audio>
-                                </div>
-
-                                @if($song->user->id !== Auth::id())
-                                <div class="w-1/12">
-                                <button type="submit" class="rounded-md mt-2 px-2 py-2 font-medium tracking-widest text-white bg-red-500 shadow-lg focus:outline-none hover:bg-red-600 hover:shadow-none">
-                                    登録
-                                </button>
-                                </div>
-                                @else
-                                <div class="w-1/12">
-                                </div>
-                                @endif
-
-                            </div>
-                        </form>
+                        @include('components.song_resister_DB')
 
                         <style>
                             .tag {

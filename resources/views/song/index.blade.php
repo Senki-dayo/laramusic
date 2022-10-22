@@ -44,27 +44,7 @@
                     <td class="py-4 px-6 border-b border-grey-light">
 
                         {{-- 曲の情報の表示 --}}
-                        <form action="{{ route('song.destroy',$song->id) }}" method="POST">
-                            @method('delete')
-                            @csrf
-                            <div class="flex container">
-                                <div class="w-1/6">
-                                <img class="w-16 h-16" src={{$song->image_url}}>
-                                </div>
-                                <div class="w-1/3">
-                                <h3 class="text-left font-bold text-lg text-grey-dark" name="song" id="song">{{$song->song}}</h3>
-                                <h3 class="text-left font-normal text-lg text-grey-dark">{{$song->artist}}</h3>
-                                </div>
-                                <div class="w-5/12">
-                                <audio controls src={{$song->music_url}}></audio>
-                                </div>
-                                <div class="w-1/12">
-                                <button type="submit" class="rounded-md mt-2 px-2 py-2 font-medium tracking-widest text-white bg-gray-700 shadow-lg focus:outline-none hover:bg-gray-800 hover:shadow-none">
-                                    削除
-                                </button>
-                                </div>
-                            </div>
-                        </form>
+                        @include('components.song_delete_DB')
 
                         {{-- 登録するタグの表示 --}}
                         <div class="mt-2">
