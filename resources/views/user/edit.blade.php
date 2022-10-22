@@ -19,7 +19,7 @@
                 </div>
                 <div class="flex flex-col mb-4">
                   <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="email">email</label>
-                  <input class="border py-2 px-3 text-grey-darkest" type="text" name="email" id="email" value="{{$user->email}}">
+                  <input class="border py-2 px-3 text-grey-darkest" type="email" name="email" id="email" value="{{$user->email}}">
                 </div>
                 <div class="flex justify-evenly">
                   <a href="{{ url()->previous() }}" class="block text-center w-5/12 py-3 mt-6 font-medium tracking-widest text-black uppercase bg-gray-100 shadow-sm focus:outline-none hover:bg-gray-200 hover:shadow-none">
