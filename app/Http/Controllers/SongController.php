@@ -9,6 +9,8 @@ use App\Models\Song;
 use App\Models\User;
 use App\Models\Tag;
 use Auth;
+use Spotify;
+use SpotifySeed;
 
 class SongController extends Controller
 {
@@ -166,9 +168,9 @@ class SongController extends Controller
             return redirect()->route('song.index');
         }
 
+        // 該当するタグの追加曲を全て取得
         $searched = $request->input('tag_title');
 
-        // 自分の登録曲を全て取得
         $tag_id = Tag::query()
             ->where('user_id',Auth::id())
             ->where('tag_title',$searched)
@@ -201,5 +203,15 @@ class SongController extends Controller
             array_push($tag_units, $tag_unit);
         }
         return view('song.index',compact('songs','tags','tag_units','searched'));
+    }
+
+    public function dashboard()
+    {
+    //おすすめの曲
+    $track_id_1 = '55Ww4Pa1iIQMhh0MLMetjo';
+    $track_id_2 = '1CAIveeC0CUY0KbENoNU3X';
+    $seed = SpotifySeed::addTracks($track_id_1, $track_id_2);
+    $songs = Spotify::recommendations($seed)->get();
+    return view('dashboard',compact('songs'));
     }
 }
