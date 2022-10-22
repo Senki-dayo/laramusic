@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('artist')->nullable();
             $table->string('image_url')->nullable();
             $table->string('music_url')->nullable();
+            $table->string('track_id');
             $table->timestamps();
         });
     }

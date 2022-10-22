@@ -207,9 +207,19 @@ class SongController extends Controller
 
     public function dashboard()
     {
-    //おすすめの曲
-    $track_id_1 = '55Ww4Pa1iIQMhh0MLMetjo';
-    $track_id_2 = '1CAIveeC0CUY0KbENoNU3X';
+    $songs = Song::query()
+        ->where('user_id',Auth::id())
+        ->orderby('updated_at','desc')
+        ->limit(2)
+        ->get();
+    // おすすめの曲
+    if (count($songs)==2){
+        $track_id_1 = $songs[0]->track_id;
+        $track_id_2 = $songs[1]->track_id;
+    } else {
+        $track_id_1 = '55Ww4Pa1iIQMhh0MLMetjo';
+        $track_id_2 = '1CAIveeC0CUY0KbENoNU3X';
+    }
     $seed = SpotifySeed::addTracks($track_id_1, $track_id_2);
     $songs = Spotify::recommendations($seed)->get();
     return view('dashboard',compact('songs'));
