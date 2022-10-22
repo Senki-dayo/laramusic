@@ -25,6 +25,8 @@ use App\Http\Controllers\CategorizedController;
 // delete -> 情報の登録のうち、特に情報を削除するとき
 
 Route::group(['middleware' => 'auth'], function () {
+    // ダッシュボード おすすめのトラックを表示
+    Route::get('/dashboard', [SongController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
     // SpotifyAPIを通した、キーワードから曲を検索する機能
     Route::get('/song/search/input', [SearchController::class, 'create'])->name('search.input');
     Route::get('/song/search/result', [SearchController::class, 'index'])->name('search.result');
@@ -53,11 +55,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard', function () {
-    //おすすめの曲
-    $seed = SpotifySeed::addTracks('55Ww4Pa1iIQMhh0MLMetjo', '1CAIveeC0CUY0KbENoNU3X');
-    $songs = Spotify::recommendations($seed)->get();
-    return view('dashboard',compact('songs'));
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
