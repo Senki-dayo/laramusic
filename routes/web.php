@@ -25,7 +25,10 @@ use App\Http\Controllers\CategorizedController;
 // delete -> 情報の登録のうち、特に情報を削除するとき
 
 Route::group(['middleware' => 'auth'], function () {
-    //タグから曲を検索する機能
+    // SpotifyAPIを通した、キーワードから曲を検索する機能
+    Route::get('/song/search/input', [SearchController::class, 'create'])->name('search.input');
+    Route::get('/song/search/result', [SearchController::class, 'index'])->name('search.result');
+    // タグから曲を検索する機能
     Route::get('/song/search', [SongController::class, 'search'])->name('song.search');
     // タイムライン機能
     Route::get('/song/timeline', [SongController::class, 'timeline'])->name('song.timeline');
@@ -51,27 +54,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboard', function () {
-    // $songs = Spotify::albumTracks('0GDxYVgLWDfGYgPUbuZonO')->get();
-    // $seed = SpotifySeed::setGenres(['gospel', 'pop', 'funk'])
-    //     ->setTargetValence(1.00)
-    //     ->setSpeechiness(0.3, 0.9)
-    //     ->setLiveness(0.3, 1.0);
-
-    //ID Sample
-    //track 1CAIveeC0CUY0KbENoNU3X
-    //track 5m1i6hq7dmRlp3c1utE48L (track_imageあり)
-
     //おすすめの曲
     $seed = SpotifySeed::addTracks('55Ww4Pa1iIQMhh0MLMetjo', '1CAIveeC0CUY0KbENoNU3X');
     $songs = Spotify::recommendations($seed)->get();
-
-
-
-    $image = Spotify::playlistCoverImage('37i9dQZF1DZ06evNZXIDEU')->get();
-    // $image = Spotify::trackCoverImage('1CAIveeC0CUY0KbENoNU3X')->get();
-    $track = Spotify::track('1CAIveeC0CUY0KbENoNU3X')->get();
-
-    return view('dashboard',compact('songs','image','track'));
+    return view('dashboard',compact('songs'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
