@@ -40,8 +40,8 @@
 
           <!-- 🔽 作成ページへのリンクを追加 -->
           <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link :href="route('song.create')" :active="request()->routeIs('song.create')">
-              {{ __('曲登録') }}
+            <x-nav-link :href="route('search.input')" :active="request()->routeIs('search.input')">
+              {{ __('トラック検索') }}
             </x-nav-link>
           </div>
 
@@ -132,8 +132,8 @@
 
       <!-- 🔽 作成ページへのリンクを追加 -->
       <div class="pt-2 pb-3 space-y-1">
-        <x-responsive-nav-link :href="route('song.create')" :active="request()->routeIs('song.create')">
-          {{ __('曲登録') }}
+        <x-responsive-nav-link :href="route('search.input')" :active="request()->routeIs('search.input')">
+          {{ __('トラック検索') }}
         </x-responsive-nav-link>
       </div>
 
