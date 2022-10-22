@@ -55,6 +55,7 @@
                             <input class="hidden" type="text" name="artist" value={{$song['artists'][0]['name']}}>
                             <input class="hidden" type="text" name="image_url" value={{$song['album']['images'][2]['url']}}>
                             <input class="hidden" type="text" name="music_url" value={{$song['preview_url']}}>
+                            <input class="hidden" type="text" name="track_id" value={{$songs['tracks'][0]['id']}}>
                             {{-- SpotifyのtrackIDだけをDBに保存したほうが良いかも？ --}}
                             {{-- SpotifyAPI(無料版)の接続制限も気になるのでとりあえず保留で。 --}}
 
