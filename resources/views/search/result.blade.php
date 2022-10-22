@@ -6,15 +6,6 @@
         </h2>
     </x-slot>
 
-    {{-- データ読み込み チートシート --}}
-    <div class="hidden">
-    <p>曲名データ：{{$songs['tracks']['items'][0]['name']}}</p>
-    <p>歌手データ：{{$songs['tracks']['items'][0]['artists'][0]['name']}}</p>
-    <p>画像データ：{{$songs['tracks']['items'][0]['album']['images'][2]['url']}}</p>
-    <p>音声データ：{{$songs['tracks']['items'][0]['preview_url']}}</p>
-    <p>トラックID:{{$songs['tracks']['items'][0]['id']}}</p>
-    </div>
-
     <div class="py-3">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
