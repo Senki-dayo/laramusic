@@ -1,7 +1,5 @@
 <?php
     $name = Auth::user()->name;
-    // dd(Auth::id());
-    // dd($songs);
 ?>
 
 <x-app-layout>
@@ -39,7 +37,7 @@
 
                 <thead>
                   <tr>
-                    <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">注目の楽曲</th>
+                    <th class="py-3 px-6 bg-grey-lightest font-bold text-lg text-grey-dark border-b border-grey-light">あなたにおすすめの楽曲</th>
                   </tr>
                 </thead>
 
