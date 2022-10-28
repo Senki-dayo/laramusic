@@ -23,7 +23,17 @@
                     <td class="py-4 px-6 border-b border-grey-light">
                         <p>{{$song->created_at}}</p>
                         <p class="mb-4"><b>{{$song->user->name}}</b>さんが新しい楽曲を登録しました。</p>
-                        @include('components.song_resister_DB')
+                        {{-- わかりやすい変数に格納 --}}
+                        <?php
+                        $title = $song->song;
+                        $artist = $song->artist;
+                        $image_url = $song->image_url;
+                        $music_url = $song->music_url;
+                        $track_id = $song->track_id;
+                        $user_id = $song->user->id;
+                        ?>
+                        {{-- 登録フォームの表示 --}}
+                        @include("components.resister-form")
 
                         <style>
                             .tag {
