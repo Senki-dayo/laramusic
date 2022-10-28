@@ -42,9 +42,17 @@
                     @foreach ($songs as $index => $song)
                     <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
-
-                        {{-- 曲の情報の表示 --}}
-                        @include('components.song_delete_DB')
+                        {{-- わかりやすい変数に格納 --}}
+                        <?php
+                        $title = $song->song;
+                        $artist = $song->artist;
+                        $image_url = $song->image_url;
+                        $music_url = $song->music_url;
+                        $track_id = $song->track_id;
+                        $user_id = null;
+                        ?>
+                        {{-- 削除フォームの表示 --}}
+                        @include("components.delete-form")
 
                         {{-- 登録するタグの表示 --}}
                         <div class="mt-2">

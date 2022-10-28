@@ -36,7 +36,17 @@
                   @foreach ($songs['tracks'] as $song)
                   <tr class="hover:bg-grey-lighter">
                     <td class="py-4 px-6 border-b border-grey-light">
-                    @include('components.song_resister_API')
+                        {{-- わかりやすい変数に格納 --}}
+                        <?php
+                        $title = $song['name'];
+                        $artist = $song['artists'][0]['name'];
+                        $image_url = $song['album']['images'][2]['url'];
+                        $music_url = $song['preview_url'];
+                        $track_id = $song['id'];
+                        $user_id = null;
+                        ?>
+                        {{-- 登録フォームの表示 --}}
+                        @include("components.resister-form")
                     </td>
                   </tr>
                   @endforeach
