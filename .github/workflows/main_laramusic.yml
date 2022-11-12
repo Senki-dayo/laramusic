@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy PHP app to Azure Web App - Laramusic
+name: Build and deploy PHP app to Azure Web App - laramusic
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '8.1'
 
       - name: Check if composer.json exists
         id: check_files
@@ -29,7 +29,7 @@ jobs:
 
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
-        run: composer validate --no-check-publish && composer update && composer install --prefer-dist --no-progress
+        run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -54,7 +54,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'Laramusic'
+          app-name: 'laramusic'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_774905FF570043A1B7D8318A30FEB4E8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_920FD250F0E844A181BF56DA08C0D121 }}
           package: .
